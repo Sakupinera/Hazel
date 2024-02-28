@@ -7,6 +7,9 @@
 
 #include <glad/glad.h>
 
+#include "imgui.h"
+#include "Platform/OpenGL/imgui_impl_glfw.h"
+
 namespace Hazel {
 
 	static bool s_GLFWInitialized = false;
@@ -55,6 +58,14 @@ namespace Hazel {
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
+		// TEMPORARY
+		{
+			ImGui::CreateContext();
+			ImGui::StyleColorsDark();
+
+			ImGui_ImplGlfw_InitForOpenGL(m_Window, true);
+		}
+
 		// Set GLFW callbacks
 		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
 		{
@@ -98,6 +109,14 @@ namespace Hazel {
 					break;
 				}
 			}
+		});
+
+		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int keycode)
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+			KeyTypedEvent event(keycode);
+			data.EventCallback(event);
 		});
 
 		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods)

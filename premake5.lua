@@ -21,6 +21,8 @@ include "Hazel/vendor-ex/GLFW"
 include "Hazel/vendor-ex/Glad"
 include "Hazel/vendor-ex/imgui"
 
+startproject "Sandbox"
+
 project "Hazel"
 	location "Hazel"
 	kind "SharedLib"
