@@ -1,3 +1,6 @@
 [submodule "Hazel/vendor-ex/spdlog"]
 	path = Hazel/vendor-ex/spdlog
 	url = git@github.com:gabime/spdlog.git
+[submodule "Hazel/vendor-ex/glm"]
+	path = Hazel/vendor-ex/glm
+	url = git@github.com:g-truc/glm.git
