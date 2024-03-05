@@ -4,3 +4,6 @@
 [submodule "Hazel/vendor-ex/glm"]
 	path = Hazel/vendor-ex/glm
 	url = git@github.com:g-truc/glm.git
+[submodule "Hazel/vendor-ex/imgui"]
+	path = Hazel/vendor-ex/imgui
+	url = git@github.com:Sakupinera/imgui.git
