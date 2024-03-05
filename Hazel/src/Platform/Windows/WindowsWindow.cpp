@@ -8,7 +8,6 @@
 #include <glad/glad.h>
 
 #include "imgui.h"
-#include "Platform/OpenGL/imgui_impl_glfw.h"
 
 namespace Hazel {
 
