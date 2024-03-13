@@ -27,7 +27,7 @@ namespace Hazel {
 	private:
 		virtual void Init(const WindowProps& props);
 		virtual void Shutdown();
-	public:
+	private:
 		GLFWwindow* m_Window;
 		GraphicsContext* m_Context;
 
