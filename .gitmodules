@@ -1,9 +1,12 @@
 [submodule "Hazel/vendor-ex/spdlog"]
 	path = Hazel/vendor-ex/spdlog
 	url = git@github.com:gabime/spdlog.git
+	branch = v1.x
 [submodule "Hazel/vendor-ex/glm"]
 	path = Hazel/vendor-ex/glm
 	url = git@github.com:g-truc/glm.git
+	branch = master
 [submodule "Hazel/vendor-ex/imgui"]
 	path = Hazel/vendor-ex/imgui
 	url = git@github.com:Sakupinera/imgui.git
+	branch = docking
