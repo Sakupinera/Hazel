@@ -5,13 +5,13 @@ echo [2] CMake
 set /p choice=Please enter your choice (1 or 2):
 if "%choice%"=="1" (
     echo You chose 1, Premake related code will be executed...
-    pushd ..\
+    pushd %~dp0\..\
     call vendor-ex\bin\premake\premake5.exe vs2022
     popd
     PAUSE
 ) else if "%choice%"=="2" (
     echo You chose 2, CMake related code will be executed...
-    cd ..
+    cd %~dp0\..\
     mkdir build
     cd build
     cmake ..
