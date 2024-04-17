@@ -4,6 +4,9 @@
 bin-int/
 build/
 
+# Hazel files
+*.log
+
 # Visual Studio files and folder
 .vs/
 **.sln

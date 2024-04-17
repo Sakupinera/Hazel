@@ -5,7 +5,7 @@
 
 extern Hazel::Application* Hazel::CreateApplication();
 
-void main(int argc, char** argv)
+int main(int argc, char** argv)
 {
 	Hazel::Log::Init();
 
