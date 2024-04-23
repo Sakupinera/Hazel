@@ -70,6 +70,10 @@ namespace Hazel
 	{
 		HZ_PROFILE_FUNCTION();
 
+		// Add frame counter and time counter
+		int frameCount = 0;
+		float timeCount = 0.0f;
+
 		while (m_Running)
 		{
 			HZ_PROFILE_SCOPE("RunLoop");
@@ -77,6 +81,18 @@ namespace Hazel
 			float time = (float)glfwGetTime();	// TODO: Platform::GetTime()
 			Timestep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
+
+			// Update frame counter and time counter
+			frameCount++;
+			timeCount += timestep;
+
+			// If a second has passed, output the frame rate and reset the frame counter and time counter
+			if (timeCount >= 1.0f)
+			{
+				HZ_CORE_INFO("FPS: {0}", frameCount);
+				frameCount = 0;
+				timeCount -= 1.0f;
+			}
 
 			if (!m_Minimized)
 			{
