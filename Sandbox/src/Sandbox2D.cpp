@@ -4,6 +4,24 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+static const uint32_t s_MapWidth = 24;
+static const char* s_MapTiles =
+"WWWWWWWWWWWWWWWWWWWWWWWW"
+"WWWWWWWWWWWWWWWWWWWWWWWW"
+"WWWWGGGGGGGGGGGGGGGGWWWW"
+"WWWWGGGGTGGGGGGGTGGGWWWW"
+"WWWWGGGGGGGGGGTGGGGGWWWW"
+"WWWWGGGGGTGGGGGGGGGGWWWW"
+"WWWWGGGGGGGGGGGGGGGGWWWW"
+"WWWWGTGGGGGGGGGGGGGGWWWW"
+"WWWWGGGGGGTGGGGGGGGGWWWW"
+"WWWWGGGTGGGGGGGGGGGGWWWW"
+"WWWWGGGGGGGGTGGGGGGGWWWW"
+"WWWWGGGGGGGGGGGGGGGGWWWW"
+"WWWWWWWWWWWWWWWWWWWWWWWW"
+"WWWWWWWWWWWWWWWWWWWWWWWW"
+;
+
 Sandbox2D::Sandbox2D()
 	: Layer("Sandbox2D"), m_CameraController(1280.0f / 720.0f), m_SquareColor({ 0.2f, 0.3f, 0.8f, 1.0f })
 {
@@ -19,6 +37,14 @@ void Sandbox2D::OnAttach()
 	m_SpiralSubTexture = Hazel::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 6, 9 }, { 16,16 }, { 1,1 });
 	m_NumberSubTexture = Hazel::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 7, 7 }, { 16,16 }, { 5,2 });
 
+	m_MapWidth = s_MapWidth;
+	m_MapHeight = strlen(s_MapTiles) / s_MapWidth;
+
+	// Water¡¢Grass¡¢Tree SubTexture
+	s_TextureMap['W'] = Hazel::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 6, 6 }, { 16,16 }, { 1,1 });
+	s_TextureMap['G'] = Hazel::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 2, 0 }, { 16,16 }, { 1,1 });
+	s_TextureMap['T'] = Hazel::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 0, 5 }, { 16,16 }, { 1,1 });
+
 	m_Particle.ColorBegin = { 254 / 255.0f, 212 / 255.0f, 123 / 255.0f, 1.0f };
 	m_Particle.ColorEnd = { 254 / 255.0f, 109 / 255.0f, 41 / 255.0f, 1.0f };
 	m_Particle.SizeBegin = 0.5f, m_Particle.SizeVariation = 0.3f, m_Particle.SizeEnd = 0.0f;
@@ -26,6 +52,8 @@ void Sandbox2D::OnAttach()
 	m_Particle.Velocity = { 0.0f, 0.0f };
 	m_Particle.VelocityVariation = { 3.0f, 1.0f };
 	m_Particle.Position = { 0.0f, 0.0f };
+
+	m_CameraController.SetZoomLevel(5.0f);
 }
 
 void Sandbox2D::OnDetach()
@@ -97,6 +125,25 @@ void Sandbox2D::OnUpdate(Hazel::Timestep ts)
 
 	m_ParticleSystem.OnUpdate(ts);
 	m_ParticleSystem.OnRender(m_CameraController.GetCamera());
+
+	Hazel::Renderer2D::BeginScene(m_CameraController.GetCamera());
+
+	for (uint32_t y = 0; y < m_MapHeight; y++)
+	{
+		for (uint32_t x = 0; x < m_MapWidth; x++)
+		{
+			char tileType = s_MapTiles[x + y * m_MapWidth];
+			Hazel::Ref<Hazel::SubTexture2D> texture;
+			if (s_TextureMap.find(tileType) != s_TextureMap.end())
+				texture = s_TextureMap[tileType];
+			else
+				texture = m_SpiralSubTexture;
+
+			Hazel::Renderer2D::DrawQuad({ x - m_MapWidth / 2.0f, m_MapHeight / 2.0f - y,0.0f }, { 1.0f,1.0f }, texture);
+		}
+	}
+
+	Hazel::Renderer2D::EndScene();
 }
 
 void Sandbox2D::OnImGuiRender()
