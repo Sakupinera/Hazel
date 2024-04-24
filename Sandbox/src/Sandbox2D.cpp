@@ -14,6 +14,10 @@ void Sandbox2D::OnAttach()
 	HZ_PROFILE_FUNCTION();
 
 	m_CheckerboardTexture = Hazel::Texture2D::Create("assets/textures/Checkerboard.png");
+	m_SpriteSheet = Hazel::Texture2D::Create("assets/game/textures/kenney_pixel-shmup/Tilemap/tiles_packed.png");
+
+	m_SpiralSubTexture = Hazel::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 6, 9 }, { 16,16 }, { 1,1 });
+	m_NumberSubTexture = Hazel::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 7, 7 }, { 16,16 }, { 5,2 });
 
 	m_Particle.ColorBegin = { 254 / 255.0f, 212 / 255.0f, 123 / 255.0f, 1.0f };
 	m_Particle.ColorEnd = { 254 / 255.0f, 109 / 255.0f, 41 / 255.0f, 1.0f };
@@ -44,6 +48,7 @@ void Sandbox2D::OnUpdate(Hazel::Timestep ts)
 		Hazel::RenderCommand::Clear();
 	}
 
+#if 0
 	{
 		static float rotation = 0.0f;
 		rotation += ts * 50.0f;
@@ -68,6 +73,7 @@ void Sandbox2D::OnUpdate(Hazel::Timestep ts)
 		}
 		Hazel::Renderer2D::EndScene();
 	}
+#endif
 
 	if (Hazel::Input::IsMouseButtonPressed(HZ_MOUSE_BUTTON_LEFT))
 	{
@@ -83,6 +89,11 @@ void Sandbox2D::OnUpdate(Hazel::Timestep ts)
 		for (int i = 0; i < 5; i++)
 			m_ParticleSystem.Emit(m_Particle);
 	}
+
+	Hazel::Renderer2D::BeginScene(m_CameraController.GetCamera());
+	Hazel::Renderer2D::DrawQuad({ 0.0f,0.0f,0.0f }, { 1.0f,1.0f }, m_SpiralSubTexture);
+	Hazel::Renderer2D::DrawQuad({ 3.0f,0.0f,0.0f }, { 5.0f,2.0f }, m_NumberSubTexture);
+	Hazel::Renderer2D::EndScene();
 
 	m_ParticleSystem.OnUpdate(ts);
 	m_ParticleSystem.OnRender(m_CameraController.GetCamera());
