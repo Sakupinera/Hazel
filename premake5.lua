@@ -23,6 +23,7 @@ IncludeDir["Glad"] = "Hazel/vendor-ex/Glad/include"
 IncludeDir["ImGui"] = "Hazel/vendor-ex/imgui"
 IncludeDir["glm"] = "Hazel/vendor-ex/glm"
 IncludeDir["stb_image"] = "Hazel/vendor-ex/stb_image"
+IncludeDir["entt"] = "Hazel/vendor-ex/entt/include"
 
 -- Show in Solution
 group "Dependencies"
@@ -68,7 +69,8 @@ project "Hazel"
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.stb_image}"
+		"%{IncludeDir.stb_image}",
+		"%{IncludeDir.entt}"
 	}
 
 	links 
@@ -165,7 +167,8 @@ project "Hazel-Editor"
 		"Hazel/vendor-ex/spdlog/include",
 		"Hazel/src",
 		"Hazel/vendor-ex",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}"
 	}
 
 	links
