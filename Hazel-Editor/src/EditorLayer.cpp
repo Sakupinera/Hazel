@@ -69,6 +69,8 @@ namespace Hazel
 		m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
 		m_SecondCamera.AddComponent<NativeScriptComponent>().Bind<CameraController>();
 
+		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+
 		m_CameraController.SetZoomLevel(5.0f);
 	}
 
@@ -180,6 +182,8 @@ namespace Hazel
 		}
 
 		{
+			m_SceneHierarchyPanel.OnImGuiRender();
+
 			ImGui::Begin("Settings");
 
 			auto stats = Renderer2D::GetStats();
