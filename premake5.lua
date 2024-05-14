@@ -31,6 +31,7 @@ IncludeDir["ImGui"] = "%{wks.location}/Hazel/vendor-ex/imgui"
 IncludeDir["glm"] = "%{wks.location}/Hazel/vendor-ex/glm"
 IncludeDir["stb_image"] = "%{wks.location}/Hazel/vendor-ex/stb_image"
 IncludeDir["entt"] = "%{wks.location}/Hazel/vendor-ex/entt/include"
+IncludeDir["yaml_cpp"] = "%{wks.location}/Hazel/vendor-ex/yaml-cpp/include"
 
 -- Show in Solution
 group "Dependencies"
@@ -38,6 +39,7 @@ group "Dependencies"
 	include "Hazel/vendor-ex/GLFW"
 	include "Hazel/vendor-ex/Glad"
 	include "Hazel/vendor-ex/imgui"
+	include "Hazel/vendor-ex/yaml-cpp"
 group ""
 
 include "Hazel"

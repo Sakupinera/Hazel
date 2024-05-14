@@ -10,3 +10,6 @@
 	path = Hazel/vendor-ex/imgui
 	url = git@github.com:Sakupinera/imgui.git
 	branch = docking
+[submodule "Hazel/vendor-ex/yaml-cpp"]
+	path = Hazel/vendor-ex/yaml-cpp
+	url = git@github.com:Sakupinera/yaml-cpp.git
