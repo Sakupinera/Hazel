@@ -76,8 +76,8 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>hzpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;GLFW_INCLUDE_NONE;YAML_CPP_STATIC_DEFINE;HZ_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor-ex\spdlog\include;vendor-ex\GLFW\include;vendor-ex\Glad\include;vendor-ex\imgui;vendor-ex\glm;vendor-ex\stb_image;vendor-ex\entt\include;vendor-ex\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;GLFW_INCLUDE_NONE;YAML_CPP_STATIC_DEFINE;IMGUI_DEFINE_MATH_OPERATORS;HZ_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;vendor-ex\spdlog\include;vendor-ex\GLFW\include;vendor-ex\Glad\include;vendor-ex\imgui;vendor-ex\glm;vendor-ex\stb_image;vendor-ex\entt\include;vendor-ex\yaml-cpp\include;vendor-ex\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <MinimalRebuild>false</MinimalRebuild>
@@ -99,8 +99,8 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>hzpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;GLFW_INCLUDE_NONE;YAML_CPP_STATIC_DEFINE;HZ_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor-ex\spdlog\include;vendor-ex\GLFW\include;vendor-ex\Glad\include;vendor-ex\imgui;vendor-ex\glm;vendor-ex\stb_image;vendor-ex\entt\include;vendor-ex\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;GLFW_INCLUDE_NONE;YAML_CPP_STATIC_DEFINE;IMGUI_DEFINE_MATH_OPERATORS;HZ_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;vendor-ex\spdlog\include;vendor-ex\GLFW\include;vendor-ex\Glad\include;vendor-ex\imgui;vendor-ex\glm;vendor-ex\stb_image;vendor-ex\entt\include;vendor-ex\yaml-cpp\include;vendor-ex\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -125,8 +125,8 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>hzpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;GLFW_INCLUDE_NONE;YAML_CPP_STATIC_DEFINE;HZ_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor-ex\spdlog\include;vendor-ex\GLFW\include;vendor-ex\Glad\include;vendor-ex\imgui;vendor-ex\glm;vendor-ex\stb_image;vendor-ex\entt\include;vendor-ex\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;GLFW_INCLUDE_NONE;YAML_CPP_STATIC_DEFINE;IMGUI_DEFINE_MATH_OPERATORS;HZ_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;vendor-ex\spdlog\include;vendor-ex\GLFW\include;vendor-ex\Glad\include;vendor-ex\imgui;vendor-ex\glm;vendor-ex\stb_image;vendor-ex\entt\include;vendor-ex\yaml-cpp\include;vendor-ex\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -167,6 +167,7 @@
     <ClInclude Include="src\Hazel\Events\KeyEvent.h" />
     <ClInclude Include="src\Hazel\Events\MouseEvent.h" />
     <ClInclude Include="src\Hazel\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\Hazel\Math\Math.h" />
     <ClInclude Include="src\Hazel\Renderer\Buffer.h" />
     <ClInclude Include="src\Hazel\Renderer\Camera.h" />
     <ClInclude Include="src\Hazel\Renderer\Framebuffer.h" />
@@ -197,6 +198,7 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\hzpch.h" />
+    <ClInclude Include="vendor-ex\ImGuizmo\ImGuizmo.h" />
     <ClInclude Include="vendor-ex\glm\glm\common.hpp" />
     <ClInclude Include="vendor-ex\glm\glm\detail\_features.hpp" />
     <ClInclude Include="vendor-ex\glm\glm\detail\_fixes.hpp" />
@@ -623,6 +625,7 @@
     <ClCompile Include="src\Hazel\Core\Window.cpp" />
     <ClCompile Include="src\Hazel\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Hazel\ImGui\ImGuiLayer.cpp" />
+    <ClCompile Include="src\Hazel\Math\Math.cpp" />
     <ClCompile Include="src\Hazel\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Hazel\Renderer\Framebuffer.cpp" />
     <ClCompile Include="src\Hazel\Renderer\GraphicsContext.cpp" />
@@ -652,6 +655,9 @@
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\hzpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="vendor-ex\ImGuizmo\ImGuizmo.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="vendor-ex\stb_image\stb_image.cpp" />
   </ItemGroup>

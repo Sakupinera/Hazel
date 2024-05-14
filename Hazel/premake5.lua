@@ -18,13 +18,17 @@ project "Hazel"
 		"vendor-ex/stb_image/**.cpp",
 		"vendor-ex/glm/glm/**.hpp",
 		"vendor-ex/glm/glm/**.inl",
+
+		"vendor-ex/ImGuizmo/ImGuizmo.h",
+		"vendor-ex/ImGuizmo/ImGuizmo.cpp"
 	}
 
 	defines
 	{
 		"_CRT_SECURE_NO_WARNINGS",
 		"GLFW_INCLUDE_NONE",
-		"YAML_CPP_STATIC_DEFINE"
+		"YAML_CPP_STATIC_DEFINE",
+		"IMGUI_DEFINE_MATH_OPERATORS"
 	}
 
 	includedirs
@@ -37,7 +41,8 @@ project "Hazel"
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.stb_image}",
 		"%{IncludeDir.entt}",
-		"%{IncludeDir.yaml_cpp}"
+		"%{IncludeDir.yaml_cpp}",
+		"%{IncludeDir.ImGuizmo}"
 	}
 
 	links
@@ -48,6 +53,9 @@ project "Hazel"
 		"yaml-cpp",
 		"opengl32.lib"
 	}
+
+	filter "files:vendor-ex/ImGuizmo/**.cpp"
+	flags { "NoPCH" }
 
 	filter "system:windows"
 		systemversion "latest"
