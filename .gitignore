@@ -13,3 +13,8 @@ build/
 **.vcxproj
 **.vcxproj.filters
 **.vcxproj.user
+
+# Directories
+Hazel/vendor-ex/VulkanSDK
+Hazel-Editor/assets/cache
+scripts/__pycache__
